@@ -1,34 +1,21 @@
 <h1 id="article-title">
-	<i class="fa fa-tags" aria-hidden="true"></i><%= __('tags.title') %>
+	<i class="fa fa-tags" aria-hidden="true"></i>TAGS
 </h1>
-<h3>
-	<%= __('tags.counts') %> <%- site.tags.length %>
-</h3>
+<h2 id="article-title">
+	Nombre total de tags : <%- site.tags.data.length %>
+</h2>
+
 
 <div id="article-content">
-    <% if (theme.style && theme.style.tags && theme.style.tags.display=="line") { %>
-        <% if (site.tags && site.tags.length) { %>
-          <%
-            var tags = [];
-            site.tags.forEach(function(tag){
-              tags.push('<a href="' + config.root + tag.path + '">' + tag.name + '</a>');
-            });
-          %>
-          <div class="tags">
-            <%- tags.join(', ') %>
-          </div>
-        <% } %>
-    <% } else { %>
-    	<ul>
-            <% if (site.tags && site.tags.length) { %>
-                <% site.tags.forEach(function(tag){ %>
-                    <li class="menu-item">
-                        <span>
-                              <a href="/<%- tag.path %>"><%- tag.name %>(<%- tag.length %>)</a>
-                        </span>
-                    </li>
-                <% }); %>
-            <% } %>
-    	</ul>
-    <% } %>
+	<ul>
+      <% for (var j=0; j < site.tags.data.length; j++) { %>
+          <% if (site.tags.data[j] && site.tags.data[j].name) { %>
+            <li class="menu-item">
+                <span>
+                      <a href="/<%- site.tags.data[j].path %>"><%- site.tags.data[j].name %>(<%- site.tags.data[j].length %>)</a>
+                </span>
+            </li>
+          <% } %>
+      <% } %>
+	</ul>
 </div>
